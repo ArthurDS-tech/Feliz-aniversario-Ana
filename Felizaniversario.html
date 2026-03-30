@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário Ana 🎉</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+/* Fundo animado */
+.background {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-50px,-50px); }
+}
+
+/* Card principal */
+.card {
+  position: relative;
+  z-index: 2;
+  padding: 50px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* Botão */
+.button {
+  background: linear-gradient(45deg, #00f2fe, #4facfe);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Mensagem surpresa */
+.surprise {
+  margin-top: 20px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.surprise.show {
+  opacity: 1;
+}
+
+/* Confete */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  top: -10px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Balões */
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 40px;
+  height: 60px;
+  background: red;
+  border-radius: 50%;
+  animation: rise 10s infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-120vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="card">
+  <h1>🎉 Feliz Aniversário, Ana! 🎉</h1>
+  <p>
+    Hoje é o seu dia — e o mundo fica melhor com você nele.<br><br>
+    Que sua jornada seja cheia de conquistas, sucesso e momentos incríveis 🚀
+  </p>
+
+  <button class="button" onclick="showSurprise()">
+    Clique para surpresa 🎁
+  </button>
+
+  <div class="surprise" id="surprise">
+    <p>✨ Você é uma pessoa incrível e faz toda diferença no time! ✨</p>
+    <p>💙 Que esse novo ciclo venha com ainda mais sucesso 💙</p>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Confete
+for (let i = 0; i < 80; i++) {
+  let c = document.createElement("div");
+  c.classList.add("confetti");
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  c.style.opacity = Math.random();
+  document.body.appendChild(c);
+}
+
+// Balões
+for (let i = 0; i < 10; i++) {
+  let b = document.createElement("div");
+  b.classList.add("balloon");
+  b.style.left = Math.random() * 100 + "vw";
+  b.style.background = `hsl(${Math.random()*360}, 80%, 60%)`;
+  b.style.animationDuration = (Math.random()*5 + 5) + "s";
+  document.body.appendChild(b);
+}
+
+// Surpresa + música
+function showSurprise() {
+  document.getElementById("surprise").classList.add("show");
+  document.getElementById("music").play();
+}
+</script>
+
+</body>
+</html>
